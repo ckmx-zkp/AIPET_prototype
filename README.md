@@ -2,7 +2,7 @@
 
 纯静态单文件原型，供产品、设计与开发在 Windows 本地查看。**无需构建工具、无需联网、无外部依赖**（无 CDN，全部 inline CSS/JS）。
 
-本版已根据 `D:\Home_Work` 内的 `ai-pet-app`、`ai-pet-backend`、`ai-pet-admin`、`xiaozhi-server` 与固件规划做了能力校准（2026-08-02）：原型把“已可用”“等待后端”“等待硬件/服务”明确区分，不把未实现功能画成已上线体验。
+本版已根据 `D:\Home_Work` 内的 `ai-pet-app`、`ai-pet-backend`、`ai-pet-admin`、`xiaozhi-server` 与固件规划完成第三次进度校准（2026-08-02）：绑定、人设、角色档案、历史、记忆、外设和每日小记均已有部署能力；当前重点是用真实设备完成端到端验收。原型把“已部署”“已真实设备验收”“等待实现”明确区分，不把演示样例画成线上数据。
 
 ## 如何打开
 
@@ -18,16 +18,16 @@
 
 ## 视觉概念与落地规则
 
-- 视觉概念稿：[`design/ai-pet-pwa-home-concept-2026-08.png`](./design/ai-pet-pwa-home-concept-2026-08.png)。
+- 视觉概念稿：[`design/ai-pet-pwa-home-concept-2026-08.png`](./design/ai-pet-pwa-home-concept-2026-08.png)；人设保存成功态：[`design/persona-saved-concept-2026-08.png`](./design/persona-saved-concept-2026-08.png)。
 - 设计方向：柔和白底、星云紫、低干扰圆角与明确状态；目标是“宠物主人管理界面”，不是开发者仪表盘。
 - 原型中的“查看设备状态”是只读入口；不在 App 中放置实时语音或直接 MCP 控制。
-- “日运/小记”“外设状态”的当前页面均为诚实空态，分别等待 worker/analyses 与用户侧 peripheral 查询 API。
+- 记忆、历史、日运/小记、外设页面保留真实数据为空时的诚实空态；示例数据仅用于设计评审，不代表线上已有记录。
 
 ## 配套需求分析
 
 下一阶段的范围、优先级、验收条件与待确认契约见 [`需求分析与下一步原型方案-2026-08.md`](./需求分析与下一步原型方案-2026-08.md)。
 
-用于下一轮评审的独立子页面：[`next-step.html`](./next-step.html)，聚焦“绑定成功后 → 人设初始化 → 下次实体对话生效”的 P3 流程。
+用于下一轮评审的独立子页面：[`next-step.html`](./next-step.html)，覆盖“绑定成功后 → 人设初始化 → 已保存、等待下一次实体对话验证”的 P3 三态流程。
 
 ## 说明
 

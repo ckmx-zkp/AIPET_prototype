@@ -313,17 +313,16 @@
     <tr><td><span class="bdg ok">✅ 已上线</span></td><td>GET</td><td><code>/api/devices/{id}</code></td><td>设备详情</td></tr>
     <tr><td><span class="bdg ok">✅ 已上线</span></td><td>PATCH</td><td><code>/api/devices/{id}</code></td><td>设备改名</td></tr>
     <tr><td><span class="bdg ok">✅ 已上线</span></td><td>DELETE</td><td><code>/api/devices/{id}</code></td><td>解绑设备</td></tr>
-    <tr><td><span class="bdg ok">✅ 已上线</span></td><td>POST</td><td><code>/api/internal/chat/events</code></td><td>旁路转写落库（5 字段：device_uid、字符串 session_id、role: user|assistant、content、ts）；小智侧仍待修复</td></tr>
+    <tr><td><span class="bdg ok">✅ 已上线</span></td><td>POST</td><td><code>/api/internal/chat/events</code></td><td>旁路转写落库（5 字段：device_uid、字符串 session_id、role: user|assistant、content、ts）；小智代码已部署，待真机两条消息验收</td></tr>
     <tr><td><span class="bdg ok">✅ 已上线</span></td><td>POST</td><td><code>/api/internal/peripheral/events</code></td><td>外设状态上报（device_uid、emotion、gaze、closed、extra · 全量覆盖写 · 响应 204）</td></tr>
     <tr><td><span class="bdg ok">✅ 已上线</span></td><td>POST</td><td><code>/api/internal/chat/sessions/{id}/end</code></td><td>会话结束</td></tr>
     <tr><td><span class="bdg ok">✅ 已上线</span></td><td>POST</td><td><code>/api/internal/devices/seen</code></td><td>设备首见/活跃上报；首次见到 MAC 时分配 app <code>binding_id</code></td></tr>
     <tr><td><span class="bdg ok">✅ 已上线</span></td><td>GET / PUT</td><td><code>/api/devices/{id}/persona</code></td><td>persona：12 星座、16 MBTI、忌口与钉扎；App C1 已部署</td></tr>
-    <tr><td><span class="bdg ok">✅ 已上线</span></td><td>GET / DELETE</td><td><code>/api/devices/{id}/messages</code></td><td>脱敏历史分页与带时间窗删除审计；App C3、真实旁路数据仍待接入</td></tr>
-    <tr><td><span class="bdg s501">⛔ 501</span></td><td>—</td><td><code>/api/devices/{id}/memories</code> ×7</td><td>memories：候选/审核/列表/删除等 7 端点（M5）</td></tr>
-    <tr><td><span class="bdg s501">⛔ 501</span></td><td>—</td><td><code>/api/analyses</code> · <code>/api/export</code></td><td>analyses / export</td></tr>
-    <tr><td><span class="bdg s501">⛔ 501</span></td><td>—</td><td><code>/api/peripheral</code></td><td>peripheral 用户侧查询</td></tr>
-    <tr><td><span class="bdg s501">⛔ 501</span></td><td>—</td><td><code>/api/admin/kb</code> ×7</td><td>admin/kb 知识库运营 7 端点</td></tr>
-    <tr><td><span class="bdg ok">✅ 已上线</span></td><td>GET</td><td><code>/api/internal/devices/{uid}/persona_pack</code></td><td>固定 7 字段；xiaozhi-server 尚待会话开始时拉取、缓存与注入</td></tr>
+    <tr><td><span class="bdg ok">✅ 已上线</span></td><td>GET / POST / DELETE</td><td><code>/api/devices/{id}/memories</code></td><td>记忆列表、搜索、新建、归档与 candidate 审核；App C2 已部署，候选等待真实会话产出</td></tr>
+    <tr><td><span class="bdg ok">✅ 已上线</span></td><td>GET</td><td><code>/api/devices/{id}/analyses</code> · <code>/api/devices/{id}/peripheral</code></td><td>daily_summary、成长建议与外设快照；App D1/D2 已部署，<code>/export</code> 仍为 501</td></tr>
+    <tr><td><span class="bdg ok">✅ 已上线</span></td><td>GET / POST</td><td><code>/api/admin/kb</code> ×7</td><td>知识库草稿、发布、反馈审核；管理端运营界面待持续验收</td></tr>
+    <tr><td><span class="bdg ok">✅ 已上线</span></td><td>GET</td><td><code>/api/internal/devices/{uid}/persona_pack</code></td><td>固定 7 字段 + dossier 编译；小智已部署 remote → cache → onboarding 降级，待真机验证</td></tr>
+    <tr><td><span class="bdg ok">✅ 已上线</span></td><td>GET</td><td><code>/api/internal/context/device</code></td><td>C5 动态上下文：仅最近小结/跟进事项与 active 记忆；小智待接入并完成 Prompt 合并验收</td></tr>
   </table>
 
   <h3 class="sec">admin 前端（ai-pet-admin · Vue3 + Element Plus · B1.1 / M2 资产能力已上线）</h3>
@@ -365,7 +364,7 @@
 
 <!-- ================= 板块一：手机 App ================= -->
 <div class="board" id="board1">
-  <p class="board-desc">手机 PWA 高保真交互原型 · 左侧切换页面（P0~P5、P8），手机内底部 Tab 可点击（首页/记忆/历史/我的）。紫色代表可用/可操作；灰色代表接口或硬件尚未开放。</p>
+  <p class="board-desc">手机 PWA 高保真交互原型 · 左侧切换页面（P0~P8），手机内底部 Tab 可点击（首页/记忆/历史/我的）。紫色代表已部署能力；灰色仅代表尚未实现或尚无真实设备数据。</p>
   <div class="app-wrap">
     <div class="app-nav wf">
       <div class="nav-title">页面清单（ai-pet-app docs/03）</div>
@@ -404,7 +403,7 @@
 
         <!-- P1 首页 -->
         <div class="app-page" id="app-p1">
-          <p class="page-note"><b>P1 首页·宠物卡片</b> · 设备列表（B2.2）、人设（C1）、历史（C3）均已部署；历史内容正在等待实体会话旁路同步，记忆仍待 backend E5。</p>
+          <p class="page-note"><b>P1 首页·宠物卡片</b> · 设备列表、当前人设、历史、记忆、外设与小记均已有部署入口；真实设备 E2E 验收是当前主任务。</p>
           <div class="card" style="background:linear-gradient(135deg,#f6f3ff,#fff);">
             <div class="row">
               <div class="avatar">✦</div>
@@ -427,14 +426,14 @@
             </div>
             <div class="row between" style="margin-top:6px;">
               <span class="muted">亲密度 bond</span>
-              <span>等待后端开放 <span class="muted">(bond_level)</span></span>
+              <span>下一轮关系指标 <span class="muted">(bond_level)</span></span>
             </div>
           </div>
           <button class="btn primary big" onclick="appPage('p7');showToast('表情与动作由宠物本体执行，此处仅查看状态')">查看设备状态</button>
           <div class="row" style="margin-top:14px;gap:8px;">
             <button class="btn" style="flex:1;" onclick="appPage('p3')">设置人设</button>
             <button class="btn" style="flex:1;" onclick="appPage('p2')">绑定设备</button>
-            <button class="btn disabled" style="flex:1;">日运/小记（等待服务）</button>
+            <button class="btn" style="flex:1;" onclick="appPage('p6')">查看今日小记</button>
           </div>
         </div>
 
@@ -481,13 +480,13 @@
 
         <!-- P4 记忆 -->
         <div class="app-page" id="app-p4">
-          <p class="page-note"><b>P4 记忆</b> · 设计目标态 · 依赖 backend E5（memories + Memory MCP），当前候选与已通过内容均为非实时设计样例。</p>
+          <p class="page-note"><b>P4 记忆</b> · App C2 与 memories API 已部署，支持搜索、新建、归档与候选审核；下方仅为有数据后的设计样例。</p>
           <div class="row between">
             <h4 style="margin:0;">记忆</h4>
             <button class="btn sm" onclick="toggleEmpty()">演示空态</button>
           </div>
           <div id="mem-normal">
-            <p class="muted" style="margin:10px 0 6px;">设计样例：待确认（candidate）<span class="tag solid">2</span></p>
+            <p class="muted" style="margin:10px 0 6px;">设计样例：待确认（candidate）<span class="tag solid">2</span> · 真实候选由会话与 worker 产出</p>
             <div class="card" id="cand1">
               <p>「用户下周要考试，有点紧张」</p>
               <p class="muted">来自 08-01 的对话 · 脱敏已处理</p>
@@ -543,28 +542,28 @@
           </div>
         </div>
 
-        <!-- P6 日运 / 小记：只读，等待 analyses + worker 可用 -->
+        <!-- P6 日运 / 小记：只读，API 已部署，等待真实会话产出 -->
         <div class="app-page" id="app-p6">
-          <p class="page-note"><b>P6 日运 / 小记</b> · 用户可见只读 · 依赖 backend E6（worker + analyses），当前不应伪装为已生成内容。</p>
+          <p class="page-note"><b>P6 日运 / 小记</b> · App D2 与 daily_summary 已部署；无结果时提示等待会话结束后的服务端生成。</p>
           <h4>今天的小记</h4>
           <div class="empty-box" style="margin-top:16px;">
             <div style="font-size:30px;margin-bottom:10px;">✦</div>
-            暂时还没有小记<br><span class="muted">和星仔多聊几次，生成服务开放后会出现在这里。</span>
+            暂时还没有小记<br><span class="muted">会话结束并完成服务端小结后，会出现在这里。</span>
           </div>
           <div class="card" style="margin-top:16px;">
-            <div class="row between"><b>为什么现在没有内容？</b><span class="tag gray">等待服务开放</span></div>
+            <div class="row between"><b>为什么现在没有内容？</b><span class="tag gray">等待下一次会话</span></div>
             <p class="muted" style="margin-top:8px;">会话结束后由服务端异步生成摘要；App 只在生成完成时拉取展示，不直接计算日运或星盘。</p>
           </div>
         </div>
 
-        <!-- P7 外设状态：只读，等待 peripheral 用户查询 API -->
+        <!-- P7 外设状态：只读，等待设备最近一次上报 -->
         <div class="app-page" id="app-p7">
-          <p class="page-note"><b>P7 外设状态</b> · 用户侧只读 · 依赖 <code>GET /devices/{id}/peripheral</code>（backend E3/E6 后接入）。</p>
+          <p class="page-note"><b>P7 外设状态</b> · 用户侧只读 · App D1 与 <code>GET /devices/{id}/peripheral</code> 已部署；404 表示暂未收到设备快照。</p>
           <h4>星仔现在的状态</h4>
           <div class="card" style="text-align:center;padding:24px 16px;background:linear-gradient(135deg,#f4f0ff,#fff);">
             <div class="avatar" style="margin:0 auto 12px;width:88px;height:88px;font-size:36px;">◉</div>
             <b style="font-size:17px;">等待设备状态同步</b>
-            <p class="muted" style="margin-top:6px;">设备已绑定；当服务端开放状态查询后，这里会展示表情、视线与最近更新时间。</p>
+            <p class="muted" style="margin-top:6px;">设备已绑定；让星仔上线并互动后，再刷新查看表情、视线与最近更新时间。</p>
           </div>
           <div class="card"><div class="row between"><span>表情</span><span class="muted">—</span></div><div class="row between" style="margin-top:12px;"><span>视线</span><span class="muted">—</span></div><div class="row between" style="margin-top:12px;"><span>更新时间</span><span class="muted">—</span></div></div>
           <p class="muted" style="text-align:center;">说明：表情与动作始终由宠物本体执行，App 不直接下发 MCP 指令。</p>
@@ -572,8 +571,12 @@
 
         <!-- P8 我的 -->
         <div class="app-page" id="app-p8">
-          <p class="page-note"><b>P8 我的</b> · 支撑：Demo 第 7 幕「资产」（数据可查可删）</p>
-          <h4>我的</h4>
+          <p class="page-note"><b>P8 我的</b> · 下一步用户端重点：基于已部署的 <code>dossier</code> 展示“我的星仔”；下方为设计样例。</p>
+          <h4>我的星仔</h4>
+          <div class="card" style="padding:16px;background:linear-gradient(145deg,#fff,#f4f1ff);"><div class="row"><div class="avatar" style="width:64px;height:64px;font-size:24px;">✦</div><div><b style="font-size:18px;">星仔</b><p class="muted" style="margin-top:2px;">● 已连接 · 等待真实会话验收</p><p style="color:var(--accent);margin-top:4px;">双鱼座 × INFP</p></div></div></div>
+          <div class="card"><div class="row between"><span class="muted">身份</span><b>桌面陪伴伙伴</b></div><div class="row between" style="margin-top:12px;"><span class="muted">关系</span><b>先陪你缓一缓</b></div><div class="row between" style="margin-top:12px;"><span class="muted">目标</span><b>把日子过得轻一点</b></div><div class="row between" style="margin-top:12px;"><span class="muted">成长</span><b>下一次对话后更新</b></div></div>
+          <div class="empty-box" style="margin-top:12px;"><b>今天的小记</b><br><span class="muted">会话结束后，服务端会在这里写下小结。</span></div>
+          <button class="btn primary big" style="margin-top:12px;" onclick="appPage('p3')">编辑陪伴偏好</button>
           <div class="card"><div class="row"><div class="avatar" style="width:44px;height:44px;font-size:16px;">周</div><div><b>小周</b><p class="muted">login_name: xiaozhou</p></div></div></div>
           <div class="card"><p>导出我的数据 <span class="tag gray">R8 · Demo 后</span></p></div>
           <div class="card"><p>关于 / 隐私</p></div>

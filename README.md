@@ -27,7 +27,7 @@
 
 ## 视觉概念与落地规则
 
-- 视觉概念稿：[`design/ai-pet-pwa-home-concept-2026-08.png`](./design/ai-pet-pwa-home-concept-2026-08.png)；人设保存成功态：[`design/persona-saved-concept-2026-08.png`](./design/persona-saved-concept-2026-08.png)。
+- 视觉概念稿：[`design/ai-pet-pwa-home-concept-2026-08.png`](./design/ai-pet-pwa-home-concept-2026-08.png)；人设保存成功态：[`design/persona-saved-concept-2026-08.png`](./design/persona-saved-concept-2026-08.png)；“我的星仔”角色档案方向：[`design/my-pet-dossier-concept-2026-08.png`](./design/my-pet-dossier-concept-2026-08.png)。
 - 设计方向：柔和白底、星云紫、低干扰圆角与明确状态；目标是“宠物主人管理界面”，不是开发者仪表盘。
 - 原型中的“查看设备状态”是只读入口；不在 App 中放置实时语音或直接 MCP 控制。
 - 记忆、历史、日运/小记、外设页面保留真实数据为空时的诚实空态；示例数据仅用于设计评审，不代表线上已有记录。

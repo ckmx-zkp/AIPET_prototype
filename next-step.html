@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Pet · 下一步原型：人设初始化</title>
+  <style>
+    :root{--violet:#7357e8;--violet-2:#6246d8;--violet-soft:#f0edff;--ink:#252338;--muted:#77738c;--line:#e5e1ef;--white:#fff}
+    *{box-sizing:border-box} body{margin:0;color:var(--ink);font:15px/1.5 "PingFang SC","Microsoft YaHei",sans-serif;background:radial-gradient(circle at 12% 0,#eae4ff 0,transparent 25%),#fbfaff}
+    .review-bar{height:64px;padding:0 clamp(18px,5vw,72px);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);border-bottom:1px solid #ece9f4;backdrop-filter:blur(16px)}
+    .brand{font-weight:800;font-size:18px}.brand span{color:var(--violet)}.back{color:var(--muted);font-size:13px;text-decoration:none}.back:hover{color:var(--violet)}
+    .layout{max-width:1180px;margin:0 auto;padding:42px 24px 72px;display:grid;grid-template-columns:minmax(250px,360px) 375px;gap:96px;align-items:start;justify-content:center}
+    .intro{padding-top:46px}.eyebrow{color:var(--violet);font-size:13px;font-weight:700;letter-spacing:.08em}.intro h1{font-size:36px;line-height:1.2;letter-spacing:-1px;margin:12px 0}.intro p{color:var(--muted);margin:0 0 28px}.facts{display:grid;gap:10px}.fact{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.7);padding:13px 15px}.fact b{display:block;font-size:13px}.fact span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+    .phone{height:812px;position:relative;overflow:hidden;border:8px solid #29263a;border-radius:42px;background:var(--white);box-shadow:0 28px 70px rgba(49,36,96,.26)}.notch{position:absolute;z-index:3;left:50%;top:0;transform:translateX(-50%);width:130px;height:24px;background:#29263a;border-radius:0 0 14px 14px}.screen{height:100%;overflow:auto;padding:39px 16px 26px;background:radial-gradient(circle at 86% 1%,#e9e3ff 0,transparent 30%),#fdfcff}.screen::-webkit-scrollbar{width:0}
+    .progress{display:flex;align-items:center;justify-content:center;gap:7px;color:var(--violet);font-size:12px;font-weight:700;margin:4px 0 25px}.progress i{display:block;width:42px;height:3px;border-radius:99px;background:var(--violet)}.dot{width:18px;height:18px;border-radius:50%;background:var(--violet);color:#fff;display:grid;place-items:center;font-size:11px;font-style:normal}.dot.done::after{content:"✓"}
+    h2{font-size:26px;letter-spacing:-.6px;line-height:1.25;margin:0}.lead{margin:8px 0 20px;color:var(--muted);font-size:13px}.device{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);background:#fff;border-radius:16px;box-shadow:0 8px 18px rgba(64,47,118,.05);margin-bottom:15px}.pet{width:50px;height:50px;border-radius:17px;background:linear-gradient(145deg,#f8f7ff,#ded5ff);display:grid;place-items:center;font-size:23px;box-shadow:inset 0 0 0 3px #fff}.device b{display:block}.device small{color:var(--muted)}.online{color:#1eaa66}.online::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#35c478;margin-right:5px}.card{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.94);padding:14px;margin:11px 0;box-shadow:0 8px 18px rgba(64,47,118,.045)}.card-title{margin:0 0 10px;font-size:15px;font-weight:800}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.sign,.mbti{border:1px solid var(--line);background:#fff;border-radius:10px;color:#555167;font:12px inherit;cursor:pointer;min-height:45px;padding:5px 2px}.sign strong{font-size:17px;font-weight:400;display:block;line-height:18px}.sign.active,.mbti.active{background:linear-gradient(145deg,#faf9ff,#eeeaff);border-color:var(--violet);color:var(--violet);box-shadow:inset 0 0 0 1px #c8bcff}.mbtis{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.mbti{font-weight:700;min-height:38px}.hint{margin:9px 0 0;color:#8a77e9;font-size:12px}.field-label{display:flex;justify-content:space-between}.counter{color:var(--muted);font-weight:400;font-size:12px}textarea{resize:none;width:100%;height:74px;border:1px solid var(--line);outline:none;border-radius:10px;padding:9px;color:var(--ink);font:13px/1.55 inherit;background:#fff}textarea:focus{border-color:#b8a8fb;box-shadow:0 0 0 3px #f0edff}.field-help{color:var(--muted);font-size:11px;margin:7px 0 0}.submit{width:100%;border:0;border-radius:14px;color:#fff;background:linear-gradient(135deg,#876af2,#6246d8);padding:13px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 10px 20px rgba(101,70,216,.25)}.submit:active{transform:translateY(1px)}.skip{display:block;border:0;background:none;color:var(--violet);font:13px inherit;margin:13px auto 16px;cursor:pointer}.notice{display:flex;gap:8px;align-items:flex-start;border:1px solid #e3ddff;background:#f7f5ff;color:#625d79;border-radius:12px;padding:10px;font-size:11px}.notice i{color:var(--violet);font-size:18px;font-style:normal}.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,18px);opacity:0;pointer-events:none;transition:.2s;background:#29263a;color:#fff;border-radius:99px;padding:10px 16px;font-size:12px;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:780px){.review-bar{height:56px}.layout{display:block;padding:20px 0 0}.intro{padding:0 24px 22px}.intro h1{font-size:27px}.facts{display:none}.phone{margin:0 auto;border-radius:38px 38px 0 0;border-bottom:0;box-shadow:none;min-height:812px;height:calc(100vh - 243px);width:min(375px,100%)} }
+  </style>
+</head>
+<body>
+  <header class="review-bar"><div class="brand">AI Pet <span>原型</span></div><a class="back" href="index.html">← 返回原型总览</a></header>
+  <main class="layout">
+    <section class="intro">
+      <div class="eyebrow">下一步原型 · P3 人设初始化</div>
+      <h1>绑定之后，<br>先给它一点性格。</h1>
+      <p>这是 V0.2 主闭环的第二步。用户设定后，不承诺即时控制设备，而是明确告诉他：将在下一次实体宠物对话时生效。</p>
+      <div class="facts">
+        <div class="fact"><b>评审重点 01 · 是否需要“改天再说”</b><span>跳过后保留安全默认人设，并在首页继续提醒初始化。</span></div>
+        <div class="fact"><b>评审重点 02 · 星座与 MBTI 的输入方式</b><span>当前为直选；后续可补“做几个问题”入口，但 MBTI 计算必须在后端。</span></div>
+        <div class="fact"><b>评审重点 03 · 生效预期</b><span>保存只写入 backend；xiaozhi-server 在下次会话开始时拉取 persona_pack。</span></div>
+      </div>
+    </section>
+    <section class="phone" aria-label="人设初始化手机原型"><div class="notch"></div><div class="screen">
+      <div class="progress"><span class="dot done"></span><i></i><span class="dot">2</span><span>第 2 步，共 2 步</span></div>
+      <h2>给星仔一点性格</h2><p class="lead">为它设定性格偏好，让它更懂你。</p>
+      <div class="device"><div class="pet">✦</div><div><b>星仔</b><small><span class="online">已连接</span>　设备已认领</small></div></div>
+      <div class="card"><p class="card-title">选择星座</p><div class="grid" id="zodiac">
+        <button class="sign" data-name="白羊座"><strong>♈</strong>白羊</button><button class="sign" data-name="金牛座"><strong>♉</strong>金牛</button><button class="sign" data-name="双子座"><strong>♊</strong>双子</button><button class="sign" data-name="巨蟹座"><strong>♋</strong>巨蟹</button>
+        <button class="sign" data-name="狮子座"><strong>♌</strong>狮子</button><button class="sign" data-name="处女座"><strong>♍</strong>处女</button><button class="sign" data-name="天秤座"><strong>♎</strong>天秤</button><button class="sign" data-name="天蝎座"><strong>♏</strong>天蝎</button>
+        <button class="sign" data-name="射手座"><strong>♐</strong>射手</button><button class="sign" data-name="摩羯座"><strong>♑</strong>摩羯</button><button class="sign" data-name="水瓶座"><strong>♒</strong>水瓶</button><button class="sign active" data-name="双鱼座"><strong>♓</strong>双鱼</button>
+      </div></div>
+      <div class="card"><p class="card-title">选择 MBTI 性格类型</p><div class="mbtis" id="mbti"><button class="mbti">INTJ</button><button class="mbti">INFJ</button><button class="mbti active">INFP</button><button class="mbti">ENFP</button></div><p class="hint" id="mbtiHint">INFP · 理想主义者 / 温柔敏感 / 富有创造力</p></div>
+      <div class="card"><p class="card-title field-label"><span>希望它怎么陪你</span><span class="counter" id="counter">0/120</span></p><textarea id="wish" maxlength="120" placeholder="例如：在我低落时先陪我缓一缓；不要主动给人生建议。"></textarea><p class="field-help">建议 10–120 字。这会成为人设偏好的补充，而不是公开信息。</p></div>
+      <button class="submit" id="save">保存并在下次对话生效</button><button class="skip" id="skip">改天再说</button>
+      <div class="notice"><i>◌</i><span>以上设置将在你下一次与星仔对话时，同步应用到实体宠物上。</span></div>
+    </div></section>
+  </main><div class="toast" id="toast"></div>
+  <script>
+    const $=s=>document.querySelector(s), toast=t=>{const e=$('#toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2200)};
+    $('#zodiac').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('#zodiac').querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
+    const hints={INTJ:'INTJ · 独立思考 / 有边界感 / 喜欢清晰表达',INFJ:'INFJ · 善于倾听 / 重视共鸣 / 温柔坚定',INFP:'INFP · 理想主义者 / 温柔敏感 / 富有创造力',ENFP:'ENFP · 热情好奇 / 喜欢探索 / 乐于分享'};
+    $('#mbti').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('#mbti').querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#mbtiHint').textContent=hints[b.textContent]});
+    $('#wish').addEventListener('input',e=>$('#counter').textContent=e.target.value.length+'/120');
+    $('#save').addEventListener('click',()=>toast('已保存 · 下次与星仔对话时生效'));
+    $('#skip').addEventListener('click',()=>toast('已保留默认人设，可随时在首页继续设置'));
+  </script>
+</body>
+</html>

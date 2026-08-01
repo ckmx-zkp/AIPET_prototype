@@ -9,6 +9,15 @@
 - 直接**双击 `index.html`**（默认用 Chrome / Edge 打开即可）；或
 - 把 `index.html` 拖进任意现代浏览器窗口。
 
+## 在线评审
+
+原型已部署在阿里云 ECS 的现有受保护静态站点中：
+
+- 总览：[`http://39.107.143.71/prototype/`](http://39.107.143.71/prototype/)
+- 人设保存三态页：[`http://39.107.143.71/prototype/next-step.html`](http://39.107.143.71/prototype/next-step.html)
+
+访问复用协作看板的 Basic Auth；未新增公网端口，未部署任何 API 或密钥。
+
 ## 内容（顶部 Tab 切换三大板块）
 
 1. **代码现状**：按真实接口与前端完成度整理的状态表，用于评审时确认依赖边界。
